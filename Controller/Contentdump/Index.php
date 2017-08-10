@@ -35,9 +35,17 @@ class Index extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
-        $content = $this->configDataCollection
-            ->addFieldToFilter('path', ['in' => $this->paths])
-            ->getColumnValues('value');
+        $content = array_merge(
+            $this->configDataCollection
+                ->addFieldToFilter('path', ['in' => $this->paths])
+                ->getColumnValues('value'),
+            $this->cmsPage
+                ->getCollection()
+                ->getColumnValues('content'),
+            $this->cmsBlock
+                ->getCollection()
+                ->getColumnValues('content')
+        );
 
         $raw = $this->resultFactory->create(ResultFactory::TYPE_RAW);
         $raw->setContents(implode(self::SEPARATOR, $content));
