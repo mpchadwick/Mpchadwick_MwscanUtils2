@@ -1,0 +1,12 @@
+{
+    "name": "mpchadwick/mwscanutils2",
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+          "Mpchadwick\\MwscanUtils\\": ""
+        }
+    }
+}
