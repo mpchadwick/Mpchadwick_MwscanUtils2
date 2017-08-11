@@ -4,6 +4,14 @@
 
 A set of utilities for use in tandem with [magento-malware-scanner](https://github.com/gwillem/magento-malware-scanner) for Magento 2 to [level up your malware scans](https://maxchadwick.xyz/blog/magento-external-malware-scan).
 
+## Installation
+
+```
+composer require mpchadwick/mwscanutils2:dev-master
+module:enable Mpchadwick_MwscanUtils
+bin/magento setup:upgrade
+```
+
 ## Features
 
 ### Content Dump Endpoint
