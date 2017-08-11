@@ -28,3 +28,28 @@ From a scanning location, you should send the output of this to mwscan.
 ```
 curl --silent https://example.com/mwscanutils/contentdump > content && grep -Erlf mwscan.txt content
 ```
+
+Additional content can be appended as needed by observing the `mpchadwick_mwscanutils_dump_content_before` event
+
+**events.xml**
+
+```xml
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="mpchadwick_mwscanutils_dump_content_before">
+        <observer name="foo_bar_observer_example" instance="Foo\Bar\Observer\Example" />
+    </event>
+</config>
+```
+
+**Example.php**
+
+```php
+public function execute(EventObserver $observer)
+{
+    $container = $observer->getEvent()->getContainer();
+    $content = $container->getContent();
+    $content[] = 'Dump this too.';
+    $container->setContent($content);
+}
+```
